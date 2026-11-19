@@ -74,7 +74,7 @@
       </div>
       <button type="button" id="reload">Reload</button>
       <button type="button" id="open">Open ↗</button>
-      <button type="button" class="info" aria-label="About" title="Sites load live: you can click and scroll inside each device. Desktop renders at 1440×900, mobile at 390 px wide (iPhone). Sites that send X-Frame-Options or a CSP frame-ancestors header can't be embedded. Localhost works while your dev server runs. Share with ?url=…&view=desktop|mobile">ⓘ</button>
+      <button type="button" class="info" aria-label="About" title="Sites load live: you can click and scroll inside each device. Desktop renders at 1440×900, mobile at 390 px wide (iPhone). Sites that send X-Frame-Options or a CSP frame-ancestors header can't be embedded. Localhost works while your dev server runs. Navigation is linked: open a page in one device and the other follows. That works automatically for pages on dclemares.github.io; any other site needs one line: &lt;script src=&quot;https://dclemares.github.io/device-mockups/sync.js&quot;&gt;&lt;/script&gt;. Share with ?url=…&view=desktop|mobile">ⓘ</button>
     </div>
   </div>
 </header>
@@ -161,7 +161,31 @@
 
   function setParam(k,v){ const q=new URL(location.href); v?q.searchParams.set(k,v):q.searchParams.delete(k); history.replaceState(null,'',q); }
 
+  // ---- Linked navigation -------------------------------------------------
+  // Each frame reports where it is: same-origin frames are read directly,
+  // cross-origin frames report through sync.js (postMessage). When one frame
+  // moves, the other is sent to the same URL.
+  const frames={d:$('dFrame'),m:$('mFrame')};
+  const known={d:'',m:''}, pending={d:null,m:null};
+  function report(k,href){
+    if(!href||href==='about:blank') return;
+    const p=pending[k];
+    if(p){ if(href===p.href||Date.now()-p.t>6000) pending[k]=null; else return; } // ignore the old page while the new one loads
+    if(href===known[k]) return;
+    known[k]=href;
+    const o=k==='d'?'m':'d';
+    if(known[o]!==href){ known[o]=href; pending[o]={href,t:Date.now()}; frames[o].src=href; }
+    current=href; $('addr').textContent=href; input.value=href; setParam('url',href);
+    try{ document.title='Mockups · '+new URL(href).hostname; }catch(e){}
+  }
+  window.addEventListener('message',e=>{
+    const d=e.data; if(!d||d.type!=='dm:nav') return;
+    for(const k in frames) if(e.source===frames[k].contentWindow) report(k,String(d.href));
+  });
+  setInterval(()=>{ for(const k in frames){ try{ report(k,frames[k].contentWindow.location.href); }catch(e){} } },300);
+
   function load(url,push){
+    known.d=known.m=url||''; pending.d=pending.m=url?{href:url,t:Date.now()}:null;
     current=url; $('addr').textContent=url||'about:blank';
     $('dFrame').src=url||'about:blank'; $('mFrame').src=url||'about:blank';
     $('dEmpty').style.display=$('mEmpty').style.display=url?'none':'flex';
