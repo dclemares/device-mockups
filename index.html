@@ -31,8 +31,8 @@
   .bar{max-width:1500px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .brand{font-weight:600;font-size:15px;margin-right:6px;white-space:nowrap}
   form{flex:1 1 380px;display:flex;gap:8px;min-width:0}
-  input[type=url]{flex:1;min-width:0;font:inherit;font-size:14px;padding:10px 14px;border:0;border-radius:10px;background:var(--soft);color:var(--text);outline:none}
-  input[type=url]:focus{box-shadow:0 0 0 2px var(--accent)}
+  #u{flex:1;min-width:0;font:inherit;font-size:14px;padding:10px 14px;border:0;border-radius:10px;background:var(--soft);color:var(--text);outline:none}
+  #u:focus{box-shadow:0 0 0 2px var(--accent)}
   button{font:inherit;font-size:14px;border:0;border-radius:10px;padding:10px 14px;cursor:pointer;background:var(--soft);color:var(--text)}
   button.primary{background:var(--accent);color:var(--accent-text);font-weight:600}
   button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -97,7 +97,7 @@
       <div class="monitor desk">
         <div class="chrome"><i></i><i></i><i></i><span id="addr">about:blank</span></div>
         <div class="screen" id="dScreen" data-w="1440" data-h="900">
-          <iframe id="dFrame" title="Desktop preview" width="1440" height="900" loading="lazy"></iframe>
+          <iframe id="dFrame" title="Desktop preview" width="1440" height="900"></iframe>
           <div class="empty" id="dEmpty">Paste a URL above to preview it</div>
         </div>
       </div>
@@ -108,7 +108,7 @@
       <div class="phone">
         <div class="island"></div>
         <div class="screen" id="mScreen" data-w="390" data-h="844">
-          <iframe id="mFrame" title="Mobile preview" width="390" height="844" loading="lazy"></iframe>
+          <iframe id="mFrame" title="Mobile preview" width="390" height="844"></iframe>
           <div class="empty" id="mEmpty">Mobile preview</div>
         </div>
       </div>
