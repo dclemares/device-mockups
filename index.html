@@ -187,6 +187,11 @@
   document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
   $('reload').addEventListener('click',()=>{ if(current) load(current,false); });
   $('open').addEventListener('click',()=>{ if(current) window.open(current,'_blank','noopener'); });
+  // iPhone has no scrollbar gutter: widen the mobile iframe by the browser's
+  // scrollbar width so the page still lays out at 390px and the bar is clipped.
+  const t=document.createElement('div'); t.style.cssText='position:absolute;top:-999px;width:100px;height:100px;overflow:scroll';
+  document.body.appendChild(t); const sbw=t.offsetWidth-t.clientWidth; t.remove();
+  $('mFrame').width=390+sbw;
   new ResizeObserver(fit).observe(stage);
 
   const p=new URLSearchParams(location.search);
