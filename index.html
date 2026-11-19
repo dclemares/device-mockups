@@ -183,6 +183,13 @@
     for(const k in frames) if(e.source===frames[k].contentWindow) report(k,String(d.href));
   });
   setInterval(()=>{ for(const k in frames){ try{ report(k,frames[k].contentWindow.location.href); }catch(e){} } },300);
+  // Links that would open a new tab stay inside the mockup (same-origin pages).
+  for(const k in frames) frames[k].addEventListener('load',()=>{
+    try{ frames[k].contentDocument.addEventListener('click',e=>{
+      const a=e.target.closest&&e.target.closest('a[target=_blank]');
+      if(a&&a.href&&!e.defaultPrevented){ e.preventDefault(); frames[k].contentWindow.location.href=a.href; }
+    }); }catch(e){}
+  });
 
   function load(url,push){
     known.d=known.m=url||''; pending.d=pending.m=url?{href:url,t:Date.now()}:null;

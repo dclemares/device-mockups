@@ -15,6 +15,11 @@
   });
   addEventListener('popstate', post);
   addEventListener('hashchange', post);
+  // keep "new tab" links inside the mockup so both devices move together
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[target=_blank]');
+    if (a && a.href && !e.defaultPrevented) { e.preventDefault(); location.href = a.href; }
+  });
   post();
   setInterval(post, 500);
 })();
