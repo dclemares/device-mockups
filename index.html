@@ -5,70 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Device Mockups</title>
 <meta name="description" content="Paste a URL and preview it inside desktop and mobile mockups.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#eef0f4; --panel:#ffffff; --soft:#f3f4f7; --text:#15181e; --muted:#6b7280;
-    --accent:#385bf8; --accent-text:#fff; --bezel:#1c1f26; --bezel-2:#2b2f38; --base:#c9ccd3;
-    --shadow:0 20px 50px -20px rgba(20,24,40,.35);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0f1115; --panel:#181b21; --soft:#20242c; --text:#eceef2; --muted:#9aa1ad;
-      --accent:#6d86ff; --accent-text:#0b0d12; --bezel:#05060a; --bezel-2:#14171d; --base:#3a3f49;
-      --shadow:0 20px 50px -20px rgba(0,0,0,.7);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0f1115; --panel:#181b21; --soft:#20242c; --text:#eceef2; --muted:#9aa1ad;
-    --accent:#6d86ff; --accent-text:#0b0d12; --bezel:#05060a; --bezel-2:#14171d; --base:#3a3f49;
-    --shadow:0 20px 50px -20px rgba(0,0,0,.7);
-  }
+  :root{--bg:#ffffff;--soft:#f2f3f6;--text:#15181e;--muted:#7a808c;--accent:#385bf8;--bezel:#121317;--chrome:#1d1f25}
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif}
-  header{position:sticky;top:0;z-index:5;background:var(--panel);box-shadow:0 1px 12px rgba(0,0,0,.06)}
-  .bar{max-width:1500px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif}
+  body{display:flex;flex-direction:column}
+  header{flex:0 0 auto}
+  .bar{padding:14px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .brand{font-weight:600;font-size:15px;margin-right:6px;white-space:nowrap}
-  form{flex:1 1 380px;display:flex;gap:8px;min-width:0}
+  form{flex:1 1 360px;display:flex;gap:8px;min-width:0}
   #u{flex:1;min-width:0;font:inherit;font-size:14px;padding:10px 14px;border:0;border-radius:10px;background:var(--soft);color:var(--text);outline:none}
   #u:focus{box-shadow:0 0 0 2px var(--accent)}
   button{font:inherit;font-size:14px;border:0;border-radius:10px;padding:10px 14px;cursor:pointer;background:var(--soft);color:var(--text)}
-  button.primary{background:var(--accent);color:var(--accent-text);font-weight:600}
+  button.primary{background:var(--accent);color:#fff;font-weight:600}
   button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .seg{display:flex;background:var(--soft);border-radius:10px;padding:3px}
   .seg button{padding:7px 12px;background:transparent;border-radius:8px;font-size:13px}
-  .seg button[aria-pressed=true]{background:var(--panel);box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
+  .seg button[aria-pressed=true]{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
   .tools{display:flex;gap:8px;align-items:center}
-  main{max-width:1500px;margin:0 auto;padding:28px 16px 40px}
-  .hint{color:var(--muted);font-size:13px;margin:0 0 22px;line-height:1.5}
-  .stage{display:flex;gap:40px;align-items:flex-end;justify-content:center}
-  .stage.only-desktop .phone-wrap,.stage.only-mobile .desk-wrap{display:none}
-  .label{color:var(--muted);font-size:12px;text-align:center;margin-top:12px}
+  .info{width:36px;padding:10px 0;color:var(--muted)}
+
+  main{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;gap:48px;padding:16px 20px 18px}
+  main.only-desktop .phone-wrap,main.only-mobile .desk-wrap{display:none}
+  .label{color:var(--muted);font-size:12px;text-align:center;margin-top:10px;height:16px}
+  .vp{position:relative;overflow:hidden;background:#fff}
+  .native{position:absolute;top:0;left:0;transform-origin:0 0}
+  iframe{display:block;border:0;background:#fff}
+  .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#9aa0ab;font-size:14px;background:#f7f8fa}
 
   /* Desktop */
-  .desk-wrap{flex:1 1 auto;min-width:0;max-width:1100px}
-  .monitor{background:var(--bezel);border-radius:16px;padding:12px;box-shadow:var(--shadow)}
-  .chrome{display:flex;align-items:center;gap:6px;background:var(--bezel-2);border-radius:8px 8px 0 0;padding:8px 10px}
+  .desk-wrap,.phone-wrap{flex:0 0 auto;min-width:0}
+  .monitor{width:fit-content;background:var(--bezel);border-radius:14px;padding:10px;box-shadow:0 30px 60px -30px rgba(20,24,40,.45)}
+  .chrome{display:flex;align-items:center;gap:6px;background:var(--chrome);border-radius:6px 6px 0 0;padding:0 10px;height:30px}
   .chrome i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.chrome i:nth-child(2){background:#febc2e}.chrome i:nth-child(3){background:#28c840}
-  .chrome span{flex:1;margin-left:8px;font-size:11px;color:#a3a9b5;background:#0e1014;border-radius:6px;padding:4px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .screen{position:relative;overflow:hidden;background:#fff}
-  .desk .screen{border-radius:0 0 6px 6px}
-  .screen iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#fff}
-  .neck{width:16%;height:46px;margin:0 auto;background:linear-gradient(var(--base),color-mix(in srgb,var(--base) 80%,#000))}
-  .foot{width:30%;height:10px;margin:0 auto;border-radius:6px 6px 2px 2px;background:var(--base)}
+  .chrome span{flex:1;min-width:0;margin-left:8px;font-size:11px;color:#a3a9b5;background:#0e1014;border-radius:6px;padding:4px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .desk .vp{border-radius:0 0 4px 4px}
+  .neck{width:15%;height:34px;margin:0 auto;background:linear-gradient(#d4d6db,#b9bcc3)}
+  .foot{width:28%;height:8px;margin:0 auto;border-radius:6px 6px 2px 2px;background:#c6c9cf}
 
-  /* Phone */
-  .phone-wrap{flex:0 0 auto}
-  .phone{background:var(--bezel);border-radius:52px;padding:13px;box-shadow:var(--shadow);position:relative}
-  .phone .screen{border-radius:40px}
-  .island{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:30%;height:26px;border-radius:20px;background:#000;z-index:2}
-
-  .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#8a909c;font-size:14px;background:#f6f7f9}
-  @media (max-width:820px){
-    .stage{flex-direction:column;align-items:center;gap:32px}
-    .desk-wrap{width:100%}
-  }
+  /* Phone: titanium rim + black bezel + status bar + island + home indicator */
+  .phone{position:relative;padding:var(--rim);border-radius:var(--r-out);
+    background:linear-gradient(145deg,#d9dbe0,#8e9199 30%,#c9ccd2 55%,#7d8088 80%,#c3c6cc);
+    box-shadow:0 30px 60px -28px rgba(20,24,40,.5)}
+  .phone .bezel{background:#000;border-radius:var(--r-mid);padding:var(--bz)}
+  .phone .vp{border-radius:var(--r-in)}
+  .btn{position:absolute;width:calc(var(--rim)*1.1);background:linear-gradient(90deg,#8d9098,#c7cad0);border-radius:2px}
+  .btn.l{left:calc(var(--rim)*-0.9)}.btn.r{right:calc(var(--rim)*-0.9);background:linear-gradient(90deg,#c7cad0,#8d9098)}
+  .status{position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 44px;background:#fff;color:#000;font:600 16px/1 -apple-system,system-ui,Inter,sans-serif;z-index:2}
+  .status .ic{display:flex;gap:6px;align-items:center}
+  .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:124px;height:36px;border-radius:20px;background:#000;z-index:3}
+  .home{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:rgba(0,0,0,.85);z-index:3;pointer-events:none}
 </style>
 </head>
 <body>
@@ -76,7 +63,7 @@
   <div class="bar">
     <div class="brand">Device Mockups</div>
     <form id="f">
-      <input id="u" type="url" inputmode="url" placeholder="https://example.com" aria-label="Website URL" required>
+      <input id="u" type="text" inputmode="url" autocomplete="url" spellcheck="false" placeholder="https://example.com" aria-label="Website URL">
       <button class="primary" type="submit">Preview</button>
     </form>
     <div class="tools">
@@ -85,42 +72,55 @@
         <button type="button" data-view="desktop" aria-pressed="false">Desktop</button>
         <button type="button" data-view="mobile" aria-pressed="false">Mobile</button>
       </div>
-      <button type="button" id="reload" title="Reload both">Reload</button>
-      <button type="button" id="open" title="Open in new tab">Open ↗</button>
+      <button type="button" id="reload">Reload</button>
+      <button type="button" id="open">Open ↗</button>
+      <button type="button" class="info" aria-label="About" title="Sites load live: you can click and scroll inside each device. Desktop renders at 1440×900, mobile at 390 px wide (iPhone). Sites that send X-Frame-Options or a CSP frame-ancestors header can't be embedded. Localhost works while your dev server runs. Share with ?url=…&view=desktop|mobile">ⓘ</button>
     </div>
   </div>
 </header>
-<main>
-  <p class="hint">The site loads live inside each device, so you can click and scroll. Desktop renders at 1440×900, mobile at 390×844 (iPhone). Some sites block being embedded (X-Frame-Options / CSP); those show a blank or error screen. Localhost URLs work too while your dev server is running. Share a preview with <code>?url=</code>.</p>
-  <div class="stage" id="stage">
-    <div class="desk-wrap">
-      <div class="monitor desk">
-        <div class="chrome"><i></i><i></i><i></i><span id="addr">about:blank</span></div>
-        <div class="screen" id="dScreen" data-w="1440" data-h="900">
-          <iframe id="dFrame" title="Desktop preview" width="1440" height="900"></iframe>
-          <div class="empty" id="dEmpty">Paste a URL above to preview it</div>
-        </div>
+<main id="stage">
+  <div class="desk-wrap">
+    <div class="monitor desk">
+      <div class="chrome"><i></i><i></i><i></i><span id="addr">about:blank</span></div>
+      <div class="vp" id="dVp">
+        <div class="native" id="dNative"><iframe id="dFrame" title="Desktop preview" width="1440" height="900"></iframe></div>
+        <div class="empty" id="dEmpty">Paste a URL above to preview it</div>
       </div>
-      <div class="neck"></div><div class="foot"></div>
-      <div class="label">Desktop · 1440 × 900</div>
     </div>
-    <div class="phone-wrap">
-      <div class="phone">
-        <div class="island"></div>
-        <div class="screen" id="mScreen" data-w="390" data-h="844">
-          <iframe id="mFrame" title="Mobile preview" width="390" height="844"></iframe>
+    <div class="neck"></div><div class="foot"></div>
+    <div class="label">Desktop · 1440 × 900</div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone" id="phone">
+      <div class="btn l" style="top:15%;height:3.5%"></div>
+      <div class="btn l" style="top:22%;height:7%"></div>
+      <div class="btn l" style="top:31%;height:7%"></div>
+      <div class="btn r" style="top:25%;height:11%"></div>
+      <div class="bezel">
+        <div class="vp" id="mVp">
+          <div class="native" id="mNative" style="width:390px;height:844px">
+            <div class="status"><span>9:41</span>
+              <span class="ic">
+                <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+                <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .4 10.4 10.4 0 0 0 .8 3.3L2 4.6a8.6 8.6 0 0 1 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.3-1.3A6.6 6.6 0 0 0 8 4a6.6 6.6 0 0 0-4.7 1.8l1.3 1.3c.9-.8 2.1-1.3 3.4-1.3Zm0 3.6c-.5 0-1 .2-1.4.5L8 11.4l1.4-1.5c-.4-.3-.9-.5-1.4-.5Z"/></svg>
+                <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><rect x="24.5" y="4.5" width="1.6" height="4" rx=".8" opacity=".4"/></svg>
+              </span></div>
+            <div class="island"></div>
+            <iframe id="mFrame" title="Mobile preview" width="390" height="790" style="position:absolute;top:54px;left:0"></iframe>
+            <div class="home"></div>
+          </div>
           <div class="empty" id="mEmpty">Mobile preview</div>
         </div>
       </div>
-      <div class="label">Mobile · 390 × 844</div>
     </div>
+    <div class="label">Mobile · iPhone 390 × 844</div>
   </div>
 </main>
 <script>
 (function(){
   const $=id=>document.getElementById(id);
   const input=$('u'), stage=$('stage');
-  let current='';
+  let current='', view='both';
 
   function normalize(v){
     v=(v||'').trim(); if(!v) return '';
@@ -128,39 +128,53 @@
     try{ return new URL(v).href; }catch(e){ return ''; }
   }
 
-  // Fit each screen to its container while keeping the device's native viewport.
+  // Fit everything inside the viewport: no page scroll.
   function fit(){
-    const phoneH=Math.min(844*0.78, Math.max(420, window.innerHeight-260));
-    const mScreen=$('mScreen'); const ms=phoneH/844;
-    mScreen.style.width=(390*ms)+'px'; mScreen.style.height=(844*ms)+'px';
-    $('mFrame').style.transform='scale('+ms+')';
+    const cs=getComputedStyle(stage);
+    const H=stage.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom)-26; // minus label
+    const W=stage.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    const gap=48;
 
-    const dScreen=$('dScreen'); const w=dScreen.parentElement.clientWidth-24; const ds=w/1440;
-    dScreen.style.height=(900*ds)+'px';
-    $('dFrame').style.transform='scale('+ds+')';
+    // phone chrome sizes relative to its scale
+    let phoneW=0;
+    if(view!=='desktop'){
+      // total phone height = 844*s + 2*(rim+bezel) with rim=5.5*s, bezel=13*s  → (844+37)*s
+      let s=H/881;
+      if(view==='mobile') s=Math.min(s,(W)/(390+37));
+      else s=Math.min(s,(W*0.34)/(390+37));
+      const rim=5.5*s, bz=13*s;
+      const ph=$('phone');
+      ph.style.setProperty('--rim',rim+'px'); ph.style.setProperty('--bz',bz+'px');
+      ph.style.setProperty('--r-in',(47*s)+'px'); ph.style.setProperty('--r-mid',(47*s+bz)+'px'); ph.style.setProperty('--r-out',(47*s+bz+rim)+'px');
+      $('mVp').style.width=(390*s)+'px'; $('mVp').style.height=(844*s)+'px';
+      $('mNative').style.transform='scale('+s+')';
+      phoneW=(390+37)*s+gap;
+    }
+    if(view!=='mobile'){
+      const fixedH=10+30+10+34+8; // bezel top, chrome, bezel bottom, neck, foot
+      const sH=(H-fixedH)/900, sW=(W-phoneW-20)/1440;
+      const s=Math.max(0.05,Math.min(sH,sW));
+      $('dVp').style.width=(1440*s)+'px'; $('dVp').style.height=(900*s)+'px';
+      $('dNative').style.transform='scale('+s+')';
+    }
   }
 
-  function load(url, push){
-    current=url;
-    $('addr').textContent=url||'about:blank';
-    ['d','m'].forEach(k=>{
-      $(k+'Frame').src=url||'about:blank';
-      $(k+'Empty').style.display=url?'none':'flex';
-    });
-    if(push){
-      const q=new URL(location.href);
-      url?q.searchParams.set('url',url):q.searchParams.delete('url');
-      history.replaceState(null,'',q);
-    }
+  function setParam(k,v){ const q=new URL(location.href); v?q.searchParams.set(k,v):q.searchParams.delete(k); history.replaceState(null,'',q); }
+
+  function load(url,push){
+    current=url; $('addr').textContent=url||'about:blank';
+    $('dFrame').src=url||'about:blank'; $('mFrame').src=url||'about:blank';
+    $('dEmpty').style.display=$('mEmpty').style.display=url?'none':'flex';
+    if(push) setParam('url',url);
     document.title=url?('Mockups · '+new URL(url).hostname):'Device Mockups';
   }
 
   function setView(v){
+    view=v;
     stage.classList.toggle('only-desktop',v==='desktop');
     stage.classList.toggle('only-mobile',v==='mobile');
     document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v));
-    const q=new URL(location.href); v==='both'?q.searchParams.delete('view'):q.searchParams.set('view',v);
-    history.replaceState(null,'',q); fit();
+    setParam('view',v==='both'?'':v); fit();
   }
 
   $('f').addEventListener('submit',e=>{
@@ -170,19 +184,14 @@
     input.value=url; load(url,true);
   });
   input.addEventListener('input',()=>input.setCustomValidity(''));
-  // allow typing without scheme (type=url would reject "example.com")
-  input.type='text';
   document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
   $('reload').addEventListener('click',()=>{ if(current) load(current,false); });
   $('open').addEventListener('click',()=>{ if(current) window.open(current,'_blank','noopener'); });
-
-  new ResizeObserver(fit).observe(document.body);
-  window.addEventListener('resize',fit);
+  new ResizeObserver(fit).observe(stage);
 
   const p=new URLSearchParams(location.search);
   const start=normalize(p.get('url')); if(start){ input.value=start; load(start,false); }
-  if(['desktop','mobile'].includes(p.get('view'))) setView(p.get('view'));
-  fit();
+  setView(['desktop','mobile'].includes(p.get('view'))?p.get('view'):'both');
 })();
 </script>
 </body>
